@@ -17,14 +17,12 @@ class MLKitBarcodeAnalyzer(private val listener: ScanningResultListener) : Image
         if (mediaImage != null && !isScanning) {
             val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
             // Pass image to an ML Kit Vision API
-            // ...
             val scanner = BarcodeScanning.getClient()
 
             isScanning = true
             scanner.process(image)
                 .addOnSuccessListener { barcodes ->
                     // Task completed successfully
-                    // ...
 
                     barcodes.firstOrNull().let { barcode ->
                         val rawValue = barcode?.rawValue
@@ -39,7 +37,6 @@ class MLKitBarcodeAnalyzer(private val listener: ScanningResultListener) : Image
                 }
                 .addOnFailureListener {
                     // Task failed with an exception
-                    // ...
                     isScanning = false
                     imageProxy.close()
                 }

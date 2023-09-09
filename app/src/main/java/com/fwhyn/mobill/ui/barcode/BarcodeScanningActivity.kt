@@ -22,16 +22,12 @@ import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-const val ARG_SCANNING_SDK = "scanning_SDK"
-
 class BarcodeScanningActivity : AppCompatActivity() {
 
     companion object {
         @JvmStatic
-        fun start(context: Context, scannerSDK: ScannerSDK) {
-            val starter = Intent(context, BarcodeScanningActivity::class.java).apply {
-                putExtra(ARG_SCANNING_SDK, scannerSDK)
-            }
+        fun start(context: Context) {
+            val starter = Intent(context, BarcodeScanningActivity::class.java)
             context.startActivity(starter)
         }
     }
@@ -42,18 +38,11 @@ class BarcodeScanningActivity : AppCompatActivity() {
     /** Blocking camera operations are performed using this executor */
     private lateinit var cameraExecutor: ExecutorService
     private var flashEnabled = false
-    private var scannerSDK: ScannerSDK = ScannerSDK.ML_KIT //default is MLKit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBarcodeScanningBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        scannerSDK = intent?.getSerializableExtra(ARG_SCANNING_SDK) as ScannerSDK
-
-        when (scannerSDK) {
-            ScannerSDK.ML_KIT -> binding.ivScannerLogo.setImageResource(R.drawable.mlkit_icon)
-        }
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         // Initialize our background executor
@@ -63,10 +52,6 @@ class BarcodeScanningActivity : AppCompatActivity() {
             val cameraProvider = cameraProviderFuture.get()
             bindPreview(cameraProvider)
         }, ContextCompat.getMainExecutor(this))
-
-        binding.overlay.post {
-            binding.overlay.setViewFinder()
-        }
     }
 
     private fun bindPreview(cameraProvider: ProcessCameraProvider?) {
@@ -160,9 +145,5 @@ class BarcodeScanningActivity : AppCompatActivity() {
         super.onDestroy()
         // Shut down our background executor
         cameraExecutor.shutdown()
-    }
-
-    enum class ScannerSDK {
-        ML_KIT
     }
 }

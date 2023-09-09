@@ -16,7 +16,6 @@ import com.fwhyn.mobill.databinding.ActivityBarcodeMainBinding
 class BarcodeMainActivity : AppCompatActivity() {
 
     private val cameraPermissionRequestCode = 1
-    private var selectedScanningSDK = BarcodeScanningActivity.ScannerSDK.ML_KIT
     private lateinit var binding: ActivityBarcodeMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +24,6 @@ class BarcodeMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.cardMlKit.setOnClickListener {
-            selectedScanningSDK = BarcodeScanningActivity.ScannerSDK.ML_KIT
             startScanning()
         }
     }
@@ -69,7 +67,7 @@ class BarcodeMainActivity : AppCompatActivity() {
     }
 
     private fun openCameraWithScanner() {
-        BarcodeScanningActivity.start(this, selectedScanningSDK)
+        BarcodeScanningActivity.start(this)
     }
 
     @Deprecated("Deprecated in Java")
