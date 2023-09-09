@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/result"
+        app:boxStrokeColor="@android:color/black"
+        app:hintTextColor="@android:color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textColor="@android:color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCopy"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/copy"
+        app:backgroundTint="@color/colorCopyButton"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/ic_copy"
+        app:iconGravity="textStart" />
+
+</LinearLayout>
