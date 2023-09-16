@@ -10,4 +10,7 @@
     <string name="copy">Copy</string>
     <string name="scan_with_ml_kit">Scan with ML Kit</string>
     <string name="developed_by_maulik_hirani">Developed by Maulik Hirani</string>
+    <string name="please_scan_barcode_or_qrcode">Please Scan Barcode/QR Code</string>
+    <string name="hello">Hello</string>
+    <string name="hi">Hi</string>
 </resources>
